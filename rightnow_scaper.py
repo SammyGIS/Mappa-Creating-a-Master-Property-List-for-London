@@ -230,6 +230,9 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
 
 
 def get_data(url,transaction_type,source,start_index, stop_index,increment):
+
+    print('runing.....................................')
+    start_time = 
     browser = get_driver()
     all_pages_data = []
 
@@ -262,4 +265,4 @@ if __name__ == "__main__":
 
     # save scrapped data to csv
 
-    print('data scapped successfully')    
+    print('data scrapped successfully')    
