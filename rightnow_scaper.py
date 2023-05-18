@@ -26,7 +26,6 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
     """
     
     """
-
     page_data = []
 
     for page in page_html:
@@ -153,7 +152,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # Location
         try:
             location_tag = page.find_element(By.CLASS_NAME, 'propertyCard-address')
-            location = location_tag.text.split(",")[-1].strip()
+            location = location_tag.text.split(" ")[-1].strip()
         
         except:
             location =''
@@ -232,7 +231,6 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
 def get_data(url,transaction_type,source,start_index, stop_index,increment):
 
     print('runing.....................................')
-    start_time = 
     browser = get_driver()
     all_pages_data = []
 
@@ -265,4 +263,4 @@ if __name__ == "__main__":
 
     # save scrapped data to csv
 
-    print('data scrapped successfully')    
+    print('data scraped successfully')    

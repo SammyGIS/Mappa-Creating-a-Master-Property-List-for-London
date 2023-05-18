@@ -1,3 +1,4 @@
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -7,9 +8,8 @@ from datetime import datetime, date
 import time
 
 
-
-zrent_url = 'https://www.zoopla.co.uk/to-rent/property/london/?price_frequency=per_month&q=london&results_sort=newest_listings&search_source=to-rent&pn={}_next'
-zsales_url = 'https://www.zoopla.co.uk/for-sale/property/london/?price_frequency=per_month&q=london&results_sort=newest_listings&search_source=for-sale&pn={}_next'
+om_renturl  = 'https://www.onthemarket.com/to-rent/property/london/?page={}&view=grid'
+om_salesurl  = 'https://www.onthemarket.com/for-sale/property/london/?page={}&view=grid'
 
 
 def get_driver():
@@ -26,7 +26,7 @@ def get_driver():
 
 def get_pages(driver,page,url):
     driver.get(url.format(page))
-    OM_DIV_TAG = 'kii3au6'
+    OM_DIV_TAG = 'otm-PropertyCard '
     page_html = driver.find_elements(By.CLASS_NAME, OM_DIV_TAG)
     return page_html
 
@@ -58,20 +58,19 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # time.sleep(3)
         # Address
         try:
-            address_tag = page.find_element(By.CLASS_NAME, "_1ankud52")
-            address = address_tag.text
+            address_tag = page.find_element(By.CLASS_NAME, 'address')
+            address = address_tag.text 
+
         except:
             address = ''
+
 
         # time.sleep(3)
         # Bedroom
         try:         
             
-            bedroom_element = page.find_element(By.CLASS_NAME,"_1ljm00u3z    ")
-            if bedroom_element.text.split("\n")[0].strip() == 'Bedrooms':
-                bedroom = bedroom_element.text.split("\n")[1].strip()
-            else:
-                bedroom = ''
+            bedroom_element = page.find_element(By.CLASS_NAME,"otm-BedBathCount")
+            bedroom = bedroom_element.text.split("\n")[0].strip()
 
         except:
             bedroom = ''
@@ -80,42 +79,16 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # Bathroom
         try:
             
-            bathroom_tag = page.find_element(By.CLASS_NAME,"_1ljm00u3z    ")
-            if bathroom_tag.text.split("\n")[0].strip() == 'Bathrooms':
-                bathroom = bathroom_tag.text.split("\n")[1].strip()
+            bathroom_tag = page.find_element(By.CLASS_NAME,"otm-BedBathCount")
+            bathroom = bathroom_tag.text.split("\n")[1].strip()
 
-            elif bathroom_tag.text.split("\n")[2].strip() == 'Bathrooms':
-                bathroom = bathroom_tag.text.split("\n")[3].strip()
-
-            else:
-                bathroom = ''
         except:
             bathroom =''
 
         # time.sleep(3)
-        # Living room
-
-        try:
-            
-            livingroom_tag = page.find_element(By.CLASS_NAME,"_1ljm00u3z    ")
-            if livingroom_tag.text.split("\n")[0].strip() == 'Living rooms':
-                living_room = livingroom_tag.text.split("\n")[1].strip()
-
-            elif livingroom_tag.text.split("\n")[2].strip() == 'Living rooms':
-                living_room = livingroom_tag.text.split("\n")[3].strip()
-
-            elif livingroom_tag.text.split("\n")[4].strip() == 'Living rooms':
-                living_room = livingroom_tag.text.split("\n")[5].strip()
-
-            else:
-                living_room = ''
-        except:
-            living_room =''
-
-        # time.sleep(3)
         # Description
         try:
-            description_tag = page.find_element(By.CLASS_NAME, '_1ankud53')
+            description_tag = page.find_element(By.CLASS_NAME, ' ')
             description = description_tag.text
 
         except:
@@ -124,12 +97,15 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
 
         # property Type
         try:
-            property_type_tag =page.find_element(By.CLASS_NAME, '_1ankud51')
+            property_type_tag =page.find_element(By.CLASS_NAME, 'title')
             property_type = property_type_tag.text.split("\n")[0].strip()
 
         except:
             property_type = ''
 
+
+            # price
+    
         # time.sleep(3)
         # rent payment
         if transaction_type == 'rent':
@@ -138,16 +114,18 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             
             # rent price per month
             try:
-                pcm = page.find_element(By.CLASS_NAME, '_170k6632')
-                per_month = pcm.text.split(" ")[0].strip()
+                price_tag= page.find_element(By.CLASS_NAME, 'otm-Price')
+                price = price_tag.text.split("\n")[-1].strip()
+                per_month = price.split("pcm")[0].strip().split("£")[1].split(" ")[0]
                 
             except:
                 per_month = ''
                 
             # rent price per week
             try:
-                pw = page.find_element(By.CLASS_NAME, '_170k6633')
-                per_week = pw.text.split(" ")[0].strip()
+                price_tag= page.find_element(By.CLASS_NAME, 'otm-Price')
+                price = price_tag.text.split("\n")[-1].strip()
+                per_week = price.split("pcm")[-1].strip().split("£")[1].split(" ")[0]
 
             except:
                 per_week = ''               
@@ -158,8 +136,8 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
                 per_week = ''  
                 per_month = ''
                 
-                price_tag = page.find_element(By.CLASS_NAME, '_170k6632 ')
-                sales_price = price_tag.text.split(" ")[0].strip()
+                price_tag = page.find_element(By.CLASS_NAME, 'otm-Price')
+                sales_price = price_tag.text.split("\n")[-1].strip()
                 
             except:
                 sales_price = ' '
@@ -167,9 +145,8 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # time.sleep(3)           
         # Location
         try:
-            location_tag = page.find_element(By.CLASS_NAME, '_1ankud52')
+            location_tag = page.find_element(By.CLASS_NAME, 'address')
             location = location_tag.text.split(" ")[-1].strip()
-            
         
         except:
             location =''
@@ -177,8 +154,8 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # time.sleep(3)
         # Agent
         try: 
-            agent_tag =page.find_element(By.CLASS_NAME, '_12bxhf70')
-            # print(agent_tag.get_attribute('innerHTML'))
+            agent_tag = page.find_element(By.CLASS_NAME, 'agent-logo')
+            agent_tag = agent_tag.find_element(By.TAG_NAME, 'img')            
             agent = agent_tag.get_attribute('alt')
             
         except:
@@ -190,8 +167,11 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
 
         # time.sleep(3)
         # Listing URL
+
         try:
-            listing_url_tag =page.find_element(By.CLASS_NAME, '_1maljyt1')
+            
+            listing_url_tag =page.find_element(By.CLASS_NAME, 'agent-logo')
+            listing_url_tag =listing_url_tag.find_element(By.TAG_NAME, 'a')
             listing_url = listing_url_tag.get_attribute('href')
 
         except:
@@ -200,12 +180,11 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # time.sleep(3)
         # Date Added
         try:
-            date_tag = page.find_element(By.CLASS_NAME, '_18cib8e1')
-            date_string = date_tag.text.split(" on ")[-1].strip()
-            listed_date = datetime.strptime(date_string,"%dth %B %Y").strftime("%d-%m-%Y")
+            date_added_tag = page.find_element(By.CLASS_NAME, 'days-otm')
+            date_added = date_added_tag.text.split("OnTheMarket")[-1].strip()
             
         except:
-            listed_date = ' '
+            date_added = ' '
             
             
         page_data.append({
@@ -213,7 +192,6 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             'address': address,
             'bedroom': bedroom,
             'bathroom': bathroom,
-            'living_room': living_room,
             'sales_price': sales_price,
             'rent_perMonth': per_month,
             'rent_perWeek': per_week,
@@ -223,7 +201,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             'agent':agent,
             'listing_source':listing_source,
             'listing_url':listing_url,
-            'listed_date': listed_date,
+            'date_added ': date_added ,
             })
 
     return page_data
@@ -247,25 +225,22 @@ def get_data(url,transaction_type,source,start_page, end_page):
     data = pd.DataFrame(all_pages_data)
     return data
 
-
 if __name__ == "__main__":
     # Specify the start and end page numbers for scraping
     start_page = 1
-    end_page = 2
+    end_page = 42
 
     # Call the get_data function to scrape the data
-    rent_data = get_data(zrent_url,'rent','zoopla',start_page, end_page)
-    sales_data = get_data(zsales_url,'sales','zoopla',start_page, end_page)
+    rent_data = get_data(om_renturl,'rent','omt',start_page, end_page)
+    sales_data = get_data(om_salesurl,'sales','pmt',start_page, end_page)
+
 
     # merged the two data
     appended_data = pd.concat([rent_data, sales_data])
 
     #save it as csv
-    appended_data.to_csv(f'zoopla_{date.today()}.csv', index=False)
+    appended_data.to_csv(f'omt_{date.today()}.csv', index=False)
 
     # save scrapped data to csv
 
     print('data scraped successfully')    
-
-
-    
