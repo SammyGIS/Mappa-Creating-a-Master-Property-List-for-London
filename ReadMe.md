@@ -63,8 +63,13 @@ pip install  package
 
 
 ## Call the get_data function to scrape the data
-```rent_data = get_data(zrent_url, 'rent', 'zoopla', start_page, end_page)```
-```sales_data = get_data(zsales_url, 'sales', 'zoopla', start_page, end_page)```
+```
+rent_data = get_data(zrent_url, 'rent', 'zoopla', start_page, end_page)
+
+```
+```
+sales_data = get_data(zsales_url, 'sales', 'zoopla', start_page, end_page)
+```
 
 
 Feel free to customize the script and modify it according to your needs.
