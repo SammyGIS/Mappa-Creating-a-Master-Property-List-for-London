@@ -122,7 +122,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             # rent price per month
             try:
                 pcm = page.find_element(By.CLASS_NAME, 'propertyCard-priceValue')
-                per_month = pcm.text.split(" ")[0].strip()
+                per_month = pcm.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
                 
             except:
                 per_month = ''
@@ -130,7 +130,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             # rent price per week
             try:
                 pw = page.find_element(By.CLASS_NAME, 'propertyCard-secondaryPriceValue')
-                per_week = pw.text.split(" ")[0].strip()
+                per_week = pw.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
 
             except:
                 per_week = ''               
@@ -142,7 +142,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
                 per_month = ''
                 
                 price_tag = page.find_element(By.CLASS_NAME, 'propertyCard-priceValue')
-                sales_price = price_tag.text.split(" ")[0].strip()
+                sales_price = price_tag.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
                 
             except:
                 sales_price = ' '
@@ -153,6 +153,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         try:
             location_tag = page.find_element(By.CLASS_NAME, 'propertyCard-address')
             location = location_tag.text.split(" ")[-1].strip()
+            
         
         except:
             location =''
@@ -222,7 +223,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             'listing_source':listing_source,
             'listing_url':listing_url,
             'date_type':date_type,
-            'date':date,
+            'listed_date':date,
             })
 
     return page_data

@@ -1,4 +1,3 @@
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -6,6 +5,7 @@ import pandas as pd
 import datetime
 from datetime import datetime, date
 import time
+import re
 
 
 om_renturl  = 'https://www.onthemarket.com/to-rent/property/london/?page={}&view=grid'
@@ -88,8 +88,8 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # time.sleep(3)
         # Description
         try:
-            description_tag = page.find_element(By.CLASS_NAME, ' ')
-            description = description_tag.text
+            description_tag = page.find_element(By.CLASS_NAME, 'title')
+            description = description_tag.text.split("\n")[0].strip()
 
         except:
             description = ''
@@ -98,7 +98,47 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # property Type
         try:
             property_type_tag =page.find_element(By.CLASS_NAME, 'title')
-            property_type = property_type_tag.text.split("\n")[0].strip()
+            property_desc = property_type_tag.text.split("\n")[0].strip()
+            
+            match_semi = re.search(r'\bsemi-detached\b', property_desc)
+            match_flat = re.search(r'\bflat\b', property_desc)
+            match_apartment = re.search(r'\bapartment\b', property_desc)
+            match_studio = re.search(r'\bStudio\b', property_desc)
+            match_terraced = re.search(r'\bterraced\b', property_desc)
+            match_penthouse = re.search(r'\bpenthouse\b', property_desc)
+            match_duplex = re.search(r'\bduplex\b', property_desc)
+            match_house = re.search(r'\bhouse\b', property_desc)
+            match_detached = re.search(r'\bdetached\b', property_desc)
+        
+            if match_semi is not None:
+                property_type = match_semi.group(0)
+
+            elif match_flat is not None:
+                property_type = match_flat.group(0)
+
+            elif match_apartment is not None:
+                property_type = match_apartment.group(0)
+
+            elif match_studio is not None:
+                property_type = match_studio.group(0)
+
+            elif match_terraced is not None:
+                property_type = match_terraced.group(0)
+
+            elif match_penthouse is not None:
+                property_type = match_penthouse.group(0)
+
+            elif match_duplex is not None:
+                property_type = match_duplex.group(0)
+            
+            elif match_detached is not None:
+                property_type = match_detached.group(0)
+
+            elif match_house is not None:
+                property_type = match_house.group(0)
+
+            else:
+                property_type = ''
 
         except:
             property_type = ''
@@ -137,7 +177,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
                 per_month = ''
                 
                 price_tag = page.find_element(By.CLASS_NAME, 'otm-Price')
-                sales_price = price_tag.text.split("\n")[-1].strip()
+                sales_price = price_tag.text.split("\n")[-1].strip().split("£")[1].split(" ")[0]
                 
             except:
                 sales_price = ' '
@@ -201,7 +241,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             'agent':agent,
             'listing_source':listing_source,
             'listing_url':listing_url,
-            'date_added ': date_added ,
+            'listed_date': date_added ,
             })
 
     return page_data
@@ -232,7 +272,7 @@ if __name__ == "__main__":
 
     # Call the get_data function to scrape the data
     rent_data = get_data(om_renturl,'rent','omt',start_page, end_page)
-    sales_data = get_data(om_salesurl,'sales','pmt',start_page, end_page)
+    sales_data = get_data(om_salesurl,'sales','omt',start_page, end_page)
 
 
     # merged the two data

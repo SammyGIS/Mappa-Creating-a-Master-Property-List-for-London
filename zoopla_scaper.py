@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import undetected_chromedriver as uc
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import pandas as pd
 import datetime
@@ -13,14 +14,18 @@ zsales_url = 'https://www.zoopla.co.uk/for-sale/property/london/?price_frequency
 
 
 def get_driver():
-    options = webdriver.ChromeOptions()
+    options = uc.ChromeOptions()
+    
 
-    capabilities = DesiredCapabilities.CHROME.copy()
-    capabilities['acceptInsecureCerts'] = True
+    driver = uc.Chrome( options = options )
+    # options = webdriver.ChromeOptions()
 
-    options.add_argument('--ignore-ssl-errors=yes')
-    options.add_argument('--ignore-certificate-errors')
-    driver = webdriver.Chrome(r'C:\Windows\chromedriver.exe', options=options, desired_capabilities=capabilities)
+    # capabilities = DesiredCapabilities.CHROME.copy()
+    # capabilities['acceptInsecureCerts'] = True
+
+    # options.add_argument('--ignore-ssl-errors=yes')
+    # options.add_argument('--ignore-certificate-errors')
+    # driver = webdriver.Chrome(r'C:\Windows\chromedriver.exe', options=options, desired_capabilities=capabilities)
     
     return driver
 
@@ -139,7 +144,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             # rent price per month
             try:
                 pcm = page.find_element(By.CLASS_NAME, '_170k6632')
-                per_month = pcm.text.split(" ")[0].strip()
+                per_month = pcm.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
                 
             except:
                 per_month = ''
@@ -147,7 +152,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             # rent price per week
             try:
                 pw = page.find_element(By.CLASS_NAME, '_170k6633')
-                per_week = pw.text.split(" ")[0].strip()
+                per_week = pw.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
 
             except:
                 per_week = ''               
@@ -159,7 +164,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
                 per_month = ''
                 
                 price_tag = page.find_element(By.CLASS_NAME, '_170k6632 ')
-                sales_price = price_tag.text.split(" ")[0].strip()
+                sales_price = price_tag.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
                 
             except:
                 sales_price = ' '
@@ -202,10 +207,22 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         try:
             date_tag = page.find_element(By.CLASS_NAME, '_18cib8e1')
             date_string = date_tag.text.split(" on ")[-1].strip()
-            listed_date = datetime.strptime(date_string,"%dth %B %Y").strftime("%d-%m-%Y")
+            added_date = datetime.strptime(date_string,"%dth %B %Y").strftime("%d-%m-%Y")
             
         except:
-            listed_date = ' '
+            added_date = ' '
+
+        # availibility
+        # try:
+        #     date_tag = page.find_element(By.CLASS_NAME, '_18cib8e1')
+        #     date_string = date_tag.text.split(" on ")[-1].strip()
+        #     available_date = datetime.strptime(date_string,"%dth %B %Y").strftime("%d-%m-%Y")
+            
+        # except:
+        #      available_date = ' '
+
+
+
             
             
         page_data.append({
@@ -223,7 +240,8 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             'agent':agent,
             'listing_source':listing_source,
             'listing_url':listing_url,
-            'listed_date': listed_date,
+            'listed_date': added_date,
+            # 'available_date': available_date,
             })
 
     return page_data
@@ -251,7 +269,7 @@ def get_data(url,transaction_type,source,start_page, end_page):
 if __name__ == "__main__":
     # Specify the start and end page numbers for scraping
     start_page = 1
-    end_page = 2
+    end_page = 42
 
     # Call the get_data function to scrape the data
     rent_data = get_data(zrent_url,'rent','zoopla',start_page, end_page)

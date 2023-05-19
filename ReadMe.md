@@ -4,7 +4,7 @@ From finding a new neighbourhood, to property viewings, negotiations and dealing
 
 Our mission is to hand back knowledge and control to the house hunter using the power of data and technology.
 
-Our goal with this project is create is to create a master list of listed properties starting with London. Your task is the extract and blend property datasets across the Greater London area (United Kingdom) in one dataset.
+Our goal with this project is to create a master list of listed properties starting with London. Your task is the extract and blend property datasets across the Greater London area (United Kingdom) in one dataset.
 
 ## Key Deliverables:
 Code base
@@ -38,6 +38,8 @@ Greater London: List of postcode districts
 * [Seeting up Seleium](https://www.geeksforgeeks.org/how-to-install-selenium-in-python/)
 * Python 3.x
 * Selenium library
+* undetected_chromedriver library
+* psycopg2 library
 * pandas library
 * Chrome WebDriver (chromedriver.exe) placed in the specified location
 
