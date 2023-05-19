@@ -53,7 +53,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             address_tag = page.find_element(By.CLASS_NAME, "propertyCard-address")
             address = address_tag.text
         except:
-            address = ''
+            address = None
 
         # Bedroom
         try:         
@@ -74,7 +74,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             # # print(bedroom_span.get_attribute('title')        
         
         except:
-            bedroom = ''
+            bedroom = None
      
        
         
@@ -93,7 +93,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             bathroom = inner_html2[title_index_start:title_index_end][0:1]    
 
         except:
-            bathroom =''
+            bathroom =None
 
 
         # Description
@@ -102,7 +102,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             description = description_tag.text
 
         except:
-            description = ''
+            description = None
 
 
         # property Type
@@ -111,41 +111,41 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             property_type =property_type_tag.text.split("\n")[0].strip()
 
         except:
-            property_type = ''
+            property_type = None
 
   
         # rent payment
         if transaction_type == 'rent':
 
-            sales_price = ' '
+            sales_price = None
             
             # rent price per month
             try:
                 pcm = page.find_element(By.CLASS_NAME, 'propertyCard-priceValue')
-                per_month = pcm.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
+                per_month = int(pcm.text.split(" ")[0].strip().split("£")[1].split(" ")[0].replace(',', ''))
                 
             except:
-                per_month = ''
+                per_month = None
                 
             # rent price per week
             try:
                 pw = page.find_element(By.CLASS_NAME, 'propertyCard-secondaryPriceValue')
-                per_week = pw.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
+                per_week = int(pw.text.split(" ")[0].strip().split("£")[1].split(" ")[0].replace(",", ""))
 
             except:
-                per_week = ''               
+                per_week = None               
 
         else:
             # sales Price
             try:
-                per_week = ''  
-                per_month = ''
+                per_week = None  
+                per_month = None
                 
                 price_tag = page.find_element(By.CLASS_NAME, 'propertyCard-priceValue')
-                sales_price = price_tag.text.split(" ")[0].strip().split("£")[1].split(" ")[0]
+                sales_price = int(price_tag.text.split(" ")[0].strip().split("£")[1].split(" ")[0].replace(',', ''))
                 
             except:
-                sales_price = ' '
+                sales_price = None
 
                 
 
@@ -156,7 +156,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             
         
         except:
-            location =''
+            location =None
     
 
         # Agent
@@ -166,7 +166,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             agent = agent_tag.text.split("by")[-1].strip()
 
         except:
-            agent = ''
+            agent = None
 
         #Listing Source
         listing_source = source
@@ -177,7 +177,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             listing_url = listing_url_tag.get_attribute('href')
 
         except:
-            listing_url = ''
+            listing_url = None
         
 
         
@@ -204,8 +204,8 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             else:
                 date = date_tag.text.split()[-1].strip()
         except:
-            date = ' '
-            date_type = ' '      
+            date = None
+            date_type = None      
 
 
         page_data.append({
@@ -222,7 +222,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             'agent':agent,
             'listing_source':listing_source,
             'listing_url':listing_url,
-            'date_type':date_type,
+            # 'date_type':date_type,
             'listed_date':date,
             })
 
@@ -231,11 +231,12 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
 
 def get_data(url,transaction_type,source,start_index, stop_index,increment):
 
-    print('runing.....................................')
     browser = get_driver()
     all_pages_data = []
+    print('runing.....................................')
 
     for page in range(start_index, stop_index,increment):
+        
         page_html = get_pages(browser,page,url)
         pages_data = parse_pages(page_html,transaction_type, source)
         all_pages_data.extend(pages_data)
@@ -247,6 +248,7 @@ def get_data(url,transaction_type,source,start_index, stop_index,increment):
 
 if __name__ == "__main__":
     # Specify the start and end page numbers for scraping
+    # the website page number increase by 24 instead of 1, i.e page 10 = 240 ......
     start_index = 0
     stop_index = 24
     increment = 24    
@@ -260,7 +262,7 @@ if __name__ == "__main__":
     appended_data = pd.concat([rent_data, sales_data])
 
     #save it as csv
-    appended_data.to_csv(f'rightnow_{datetime.date.today()}.csv', index=False)
+    appended_data.to_csv(f'data_output/rightnow_{datetime.date.today()}.csv', index=False)
 
     # save scrapped data to csv
 

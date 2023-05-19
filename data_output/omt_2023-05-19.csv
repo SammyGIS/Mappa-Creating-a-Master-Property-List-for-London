@@ -1,0 +1,47 @@
+transaction,address,bedroom,bathroom,sales_price,rent_perMonth,rent_perWeek,description,propertyType,location,agent,listing_source,listing_url,listed_date
+rent,"Gloucester Terrace, London, W2",3.0,2,,8450,1950,3 bedroom duplex to rent,duplex,W2,Savills - Notting Hill,omt,https://www.onthemarket.com/details/12548982/,> 14 days
+rent,"Chalklands, Wembley HA9",1.0,1,,750,173,1 bedroom flat to rent,flat,HA9,Home World Management - London,omt,https://www.onthemarket.com/details/13215915/,< 7 days
+rent,"Elmhurst Road, Enfield, London, Enfield EN3",1.0,1,,1000,231,1 bedroom flat to rent,flat,EN3,,omt,https://www.onthemarket.com/details/13215647/,< 7 days
+rent,"Hogarth Road , Kensington , Kensington Chelsea SW5",1.0,1,,1647,380,1 bedroom flat to rent,flat,SW5,,omt,https://www.onthemarket.com/details/8560268/,< 7 days
+rent,"Browning Way, Hounslow TW5",,1,,1250,288,Studio to rent,Studio,TW5,,omt,https://www.onthemarket.com/details/13215123/,< 7 days
+rent,"BEAUTIFUL DOUBLE ROOM | SINGLE FEMALE | STUDENT FRIENDLY, London E18",1.0,1,,550,127,1 bedroom in a flat share to rent,flat,E18,,omt,https://www.onthemarket.com/details/13214760/,< 7 days
+rent,"Sevington Road, London NW4",5.0,2,,3000,692,5 bedroom semi-detached house to rent,semi-detached,NW4,,omt,https://www.onthemarket.com/details/13214440/,< 7 days
+rent,"Aquarius House, St George Wharf, Vauxhall, London, SW8",3.0,3,,7150,1650,3 bedroom apartment to rent,apartment,SW8,,omt,https://www.onthemarket.com/details/5932286/,2023-05-19
+rent,"Buckland Crescent, London NW3",1.0,1,,1798,415,1 bedroom flat to rent,flat,NW3,,omt,https://www.onthemarket.com/details/13231802/,2023-05-19
+rent,"Mayday Road, Thornton Heath CR7",2.0,1,,1450,335,2 bedroom flat to rent,flat,CR7,,omt,https://www.onthemarket.com/details/13231798/,2023-05-19
+rent,"Albert Road, St. Mary Cray BR5",3.0,1,,1685,389,3 bedroom flat to rent,flat,BR5,,omt,https://www.onthemarket.com/details/13231796/,2023-05-19
+rent,"Crossford Street, London, SW9",2.0,2,,2700,623,2 bedroom apartment to rent,apartment,SW9,,omt,https://www.onthemarket.com/details/13231781/,2023-05-19
+rent,"Cranmer Road, London E7",2.0,1,,1650,381,2 bedroom flat to rent,flat,E7,,omt,https://www.onthemarket.com/details/13231758/,2023-05-19
+rent,"Lombard Wharf, London SW11",3.0,2,,3400,785,3 bedroom flat to rent,flat,SW11,,omt,https://www.onthemarket.com/details/13231722/,2023-05-19
+rent,"Marsh Wall, London E14",1.0,1,,2800,646,1 bedroom flat to rent,flat,E14,,omt,https://www.onthemarket.com/details/13231703/,2023-05-19
+rent,"Ashley Road, London N17",2.0,1,,2400,554,2 bedroom flat to rent,flat,N17,,omt,https://www.onthemarket.com/details/13231699/,2023-05-19
+rent,"Ashley Road, London N17",1.0,1,,2000,462,1 bedroom flat to rent,flat,N17,,omt,https://www.onthemarket.com/details/13231698/,2023-05-19
+rent,"Goodluck Hope Walk, London E14",1.0,1,,2100,485,1 bedroom apartment to rent,apartment,E14,,omt,https://www.onthemarket.com/details/13231696/,2023-05-19
+rent,"Charles Clowes Walk, London SW11",2.0,2,,4658,1075,2 bedroom apartment to rent,apartment,SW11,,omt,https://www.onthemarket.com/details/13231695/,2023-05-19
+rent,"Mount View Road, London N4",,1,,1499,346,Studio to rent,Studio,N4,,omt,https://www.onthemarket.com/details/13231685/,2023-05-19
+rent,"Mount View Road, London N4",,1,,1499,346,Studio to rent,Studio,N4,,omt,https://www.onthemarket.com/details/13231684/,2023-05-19
+rent,"Euston Road, London NW1",2.0,1,,3033,700,2 bedroom flat to rent,flat,NW1,,omt,https://www.onthemarket.com/details/13231683/,2023-05-19
+rent,"Weymouth Mews, London W1G",1.0,1,,2903,670,1 bedroom flat to rent,flat,W1G,,omt,https://www.onthemarket.com/details/13231682/,2023-05-19
+sales,"The Broadway, Ealing, W13",,1,320000.0,,,Studio for sale,Studio,W13,Rolfe East - Northfields,omt,https://www.onthemarket.com/details/12212830/,> 14 days
+sales,"Burmester Road, Earlsfield",2.0,2,800000.0,,,2 bedroom flat for sale,flat,Earlsfield,Kinleigh Folkard & Hayward - Earlsfield Sales,omt,https://www.onthemarket.com/details/13229489/,2023-05-19
+sales,"Lancaster Avenue, West Dulwich",4.0,2,1050000.0,,,4 bedroom end of terrace house for sale,house,Dulwich,,omt,https://www.onthemarket.com/details/13229230/,2023-05-19
+sales,,,,,,,,,,,omt,https://edenstonehomes.com/beaufort-park-lisvane-2/,
+sales,"Balham High Road, Balham",1.0,1,465000.0,,,1 bedroom flat for sale,flat,Balham,,omt,https://www.onthemarket.com/details/13229229/,2023-05-19
+sales,"Tramway Avenue, London N9",2.0,1,375000.0,,,2 bedroom terraced house for sale,terraced,N9,,omt,https://www.onthemarket.com/details/13229075/,2023-05-19
+sales,"Bronson Road, Raynes Park",2.0,1,785000.0,,,2 bedroom terraced house for sale,terraced,Park,,omt,https://www.onthemarket.com/details/13229071/,2023-05-19
+sales,"Westmoreland Road, Bromley",3.0,1,425000.0,,,3 bedroom flat for sale,flat,Bromley,,omt,https://www.onthemarket.com/details/13229069/,2023-05-19
+sales,"Ferndale Road, Clapham",2.0,1,675000.0,,,2 bedroom flat for sale,flat,Clapham,,omt,https://www.onthemarket.com/details/13228831/,2023-05-19
+sales,"Acre Lane, Brixton",2.0,1,600000.0,,,2 bedroom flat for sale,flat,Brixton,,omt,https://www.onthemarket.com/details/13228830/,2023-05-19
+sales,"Baldry Gardens, Streatham",6.0,1,1250000.0,,,6 bedroom semi-detached house for sale,semi-detached,Streatham,,omt,https://www.onthemarket.com/details/13228683/,2023-05-19
+sales,"Fox Hill, Crystal Palace",2.0,1,550000.0,,,2 bedroom flat for sale,flat,Palace,,omt,https://www.onthemarket.com/details/13228378/,2023-05-19
+sales,"Thornbury Road, Brixton",1.0,1,375000.0,,,1 bedroom flat for sale,flat,Brixton,,omt,https://www.onthemarket.com/details/13228193/,2023-05-19
+sales,"Old Kent Road, London",2.0,1,500000.0,,,2 bedroom flat for sale,flat,London,,omt,https://www.onthemarket.com/details/13228188/,2023-05-19
+sales,"Nevern Place, London SW5",,1,450000.0,,,Studio for sale,Studio,SW5,,omt,https://www.onthemarket.com/details/13228128/,2023-05-19
+sales,,,,,,,,,,,omt,https://www.networkhomessales.co.uk/find-your-new-home/arc-wembley/,
+sales,"Elmwood Road, Herne Hill",2.0,1,625000.0,,,2 bedroom flat for sale,flat,Hill,,omt,https://www.onthemarket.com/details/13228044/,2023-05-19
+sales,"Upper Richmond Road, Putney",1.0,1,585000.0,,,1 bedroom flat for sale,flat,Putney,,omt,https://www.onthemarket.com/details/13228043/,2023-05-19
+sales,"Rosedale Road, Romford",4.0,2,600000.0,,,4 bedroom semi-detached house for sale,semi-detached,Romford,,omt,https://www.onthemarket.com/details/13227923/,2023-05-19
+sales,Wembley Park,1.0,1,250000.0,,,1 bedroom flat for sale,flat,Park,,omt,https://www.onthemarket.com/details/13227906/,2023-05-19
+sales,"Streatham Common North, Streatham",2.0,1,450000.0,,,2 bedroom flat for sale,flat,Streatham,,omt,https://www.onthemarket.com/details/13227873/,2023-05-19
+sales,"Malvern Road, London NW6",1.0,1,495000.0,,,1 bedroom flat for sale,flat,NW6,,omt,https://www.onthemarket.com/details/13221646/,2023-05-18
+sales,"Fulham Road, London, SW6",,1,325000.0,,,Studio for sale,Studio,SW6,,omt,https://www.onthemarket.com/details/13221569/,2023-05-18

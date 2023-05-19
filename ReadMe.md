@@ -42,6 +42,7 @@ Greater London: List of postcode districts
 * psycopg2 library
 * pandas library
 * Chrome WebDriver (chromedriver.exe) placed in the specified location
+* pgadmin / postgres db
 
 ## Usage
 1. Clone the repository or download the script.
