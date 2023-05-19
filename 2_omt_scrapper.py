@@ -109,6 +109,7 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             match_duplex = re.search(r'\bduplex\b', property_desc)
             match_house = re.search(r'\bhouse\b', property_desc)
             match_detached = re.search(r'\bdetached\b', property_desc)
+            match_maisonette = re.search(r'\bmaisonette\b', property_desc)
         
             if match_semi is not None:
                 property_type = match_semi.group(0)
@@ -136,6 +137,9 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
 
             elif match_house is not None:
                 property_type = match_house.group(0)
+
+            elif match_maisonette is not None:
+                property_type = match_maisonette.group(0)
 
             else:
                 property_type = ''

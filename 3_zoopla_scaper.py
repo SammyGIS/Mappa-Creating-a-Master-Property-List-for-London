@@ -130,7 +130,52 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
         # property Type
         try:
             property_type_tag =page.find_element(By.CLASS_NAME, '_1ankud51')
-            property_type = property_type_tag.text.split("\n")[0].strip()
+            property_desc = property_type_tag.text.split("\n")[0].strip()
+
+
+            match_semi = re.search(r'\bsemi-detached\b', property_desc)
+            match_flat = re.search(r'\bflat\b', property_desc)
+            match_apartment = re.search(r'\bapartment\b', property_desc)
+            match_studio = re.search(r'\bStudio\b', property_desc)
+            match_terraced = re.search(r'\bterraced\b', property_desc)
+            match_penthouse = re.search(r'\bpenthouse\b', property_desc)
+            match_duplex = re.search(r'\bduplex\b', property_desc)
+            match_house = re.search(r'\bhouse\b', property_desc)
+            match_detached = re.search(r'\bdetached\b', property_desc)
+            match_maisonette = re.search(r'\bmaisonette\b', property_desc)
+        
+            if match_semi is not None:
+                property_type = match_semi.group(0)
+
+            elif match_flat is not None:
+                property_type = match_flat.group(0)
+
+            elif match_apartment is not None:
+                property_type = match_apartment.group(0)
+
+            elif match_studio is not None:
+                property_type = match_studio.group(0)
+
+            elif match_terraced is not None:
+                property_type = match_terraced.group(0)
+
+            elif match_penthouse is not None:
+                property_type = match_penthouse.group(0)
+
+            elif match_duplex is not None:
+                property_type = match_duplex.group(0)
+            
+            elif match_detached is not None:
+                property_type = match_detached.group(0)
+
+            elif match_house is not None:
+                property_type = match_house.group(0)
+
+            elif match_maisonette is not None:
+                property_type = match_maisonette.group(0)
+
+            else:
+                property_type = ''
 
         except:
             property_type = ''

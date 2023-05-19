@@ -248,7 +248,7 @@ def get_data(url,transaction_type,source,start_index, stop_index,increment):
 if __name__ == "__main__":
     # Specify the start and end page numbers for scraping
     start_index = 0
-    stop_index = 1100
+    stop_index = 24
     increment = 24    
 
     # Call the get_data function to scrape the data
