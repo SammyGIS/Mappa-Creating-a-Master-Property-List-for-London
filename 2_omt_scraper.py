@@ -25,6 +25,18 @@ def get_driver():
     return driver
 
 def get_pages(driver,page,url):
+    """
+    Retrieves the content of a web page using the provided Selenium WebDriver.
+
+    Parameters:
+        - driver (WebDriver): The Selenium WebDriver instance used to access the web page.
+        - page (str): The name or identifier of the page being retrieved.
+        - url (str): The URL of the web page to be retrieved.
+
+    Returns:
+        The HTML content of the web page.
+    
+    """
     driver.get(url.format(page))
     OM_DIV_TAG = 'otm-PropertyCard '
     page_html = driver.find_elements(By.CLASS_NAME, OM_DIV_TAG)
@@ -32,7 +44,16 @@ def get_pages(driver,page,url):
 
 def parse_pages(page_html:'page_html', transaction_type:str, source:str):
     """
-    
+    Parses the given HTML content of a web page and extracts relevant information based on the provided transaction type and source.
+
+    Parameters:
+        - page_html (html elements): The HTML content of the web page to be parsed.
+        - transaction_type (str): The type of transaction for which information needs to be extracted.
+        - source (str): The source of the web page content.
+
+    Returns:
+        dataframe containing the data sccrapped from the website
+        
     """
     page_data = []
 
@@ -253,6 +274,21 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
 
 
 def get_data(url,transaction_type,source,start_page, end_page):
+    
+    """
+    Retrieves data from a specific range of pages on a website based on the provided parameters.
+
+    Parameters:
+        - url (str): The URL of the website.
+        - transaction_type (str): The type of transaction for which data needs to be retrieved.
+        - source (str): The source of the data.
+        - start_page (int): The starting index of the pages to retrieve.
+        - end_page (int): The ending index of the pages to retrieve (inclusive).
+
+    Returns:
+        dataframe: Data retrieved from the specified pages.
+
+    """
     browser = get_driver()
     all_pages_data = []
     
@@ -275,7 +311,7 @@ def get_data(url,transaction_type,source,start_page, end_page):
 if __name__ == "__main__":
     # Specify the start and end page numbers for scraping
     start_page = 1
-    end_page = 1
+    end_page = 42
 
     # Call the get_data function to scrape the data
     rent_data = get_data(om_renturl,'rent','omt',start_page, end_page)
