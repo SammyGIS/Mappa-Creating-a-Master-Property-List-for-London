@@ -72,7 +72,12 @@ rent_data = get_data(zrent_url, 'rent', 'zoopla', start_page, end_page)
 ```
 ```
 sales_data = get_data(zsales_url, 'sales', 'zoopla', start_page, end_page)
+
 ```
+
+## Data Modelling
+
+The data_modelling.ipynb file was used to model the data
 
 
 Feel free to customize the script and modify it according to your needs.
