@@ -80,6 +80,10 @@ sales_data = get_data(zsales_url, 'sales', 'zoopla', start_page, end_page)
 The data_modelling.ipynb file was used to model the data
 
 
+## Dashboard 
+https://www.arcgis.com/apps/dashboards/7d705a6fe14a4b5f959bc6701908b0ab
+
+
 Feel free to customize the script and modify it according to your needs.
 
 If you encounter any issues or have suggestions for improvements, please feel free to submit an issue or a pull request.
