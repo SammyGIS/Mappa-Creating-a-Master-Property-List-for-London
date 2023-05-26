@@ -162,34 +162,34 @@ def parse_pages(page_html:'page_html', transaction_type:str, source:str):
             match_maisonette = re.search(r'\bmaisonette\b', property_desc)
         
             if match_semi is not None:
-                property_type = match_semi.group(0)
+                property_type = match_semi.group(0).capitalize()
 
             elif match_flat is not None:
-                property_type = match_flat.group(0)
+                property_type = match_flat.group(0).capitalize()
 
             elif match_apartment is not None:
-                property_type = match_apartment.group(0)
+                property_type = match_apartment.group(0).capitalize()
 
             elif match_studio is not None:
-                property_type = match_studio.group(0)
+                property_type = match_studio.group(0).capitalize()
 
             elif match_terraced is not None:
-                property_type = match_terraced.group(0)
+                property_type = match_terraced.group(0).capitalize()
 
             elif match_penthouse is not None:
-                property_type = match_penthouse.group(0)
+                property_type = match_penthouse.group(0).capitalize()
 
             elif match_duplex is not None:
-                property_type = match_duplex.group(0)
+                property_type = match_duplex.group(0).capitalize()
             
             elif match_detached is not None:
-                property_type = match_detached.group(0)
+                property_type = match_detached.group(0).capitalize()
 
             elif match_house is not None:
-                property_type = match_house.group(0)
+                property_type = match_house.group(0).capitalize()
 
             elif match_maisonette is not None:
-                property_type = match_maisonette.group(0)
+                property_type = match_maisonette.group(0).capitalize()
 
             else:
                 property_type = None

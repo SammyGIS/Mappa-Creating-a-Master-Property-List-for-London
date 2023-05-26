@@ -2,19 +2,17 @@
 
 From finding a new neighbourhood, to property viewings, negotiations and dealing with admin (e.g. mortgage and legal), your decision-making potential will be maximised to allow you secure the best value for your money.
 
-Our mission is to hand back knowledge and control to the house hunter using the power of data and technology.
-
-Our goal with this project is to create a master list of listed properties starting with London. Your task is the extract and blend property datasets across the Greater London area (United Kingdom) in one dataset.
+The goal of this  project is to create a master list of listed properties starting with London. Your task is the extract and blend property datasets across the Greater London area (United Kingdom) in one dataset.
 
 ## Key Deliverables:
-Code base
-Documentation
-Architecture diagram of flow
+* Code base
+* Documentation
+* Architecture diagram of flow
 
 ## Dataset from Property sites
-Rightmove
-Zoopla
-On The Market (OTM)
+* Rightmove
+* Zoopla
+* On The Market (OTM)
 
 ## Required fields
 * Transaction type (i.e. sale vs. rent - string)
