@@ -1,3 +1,13 @@
+"""
+************************************************
+SCRAPE PROPERTY LISTED FOR SALES AND RENT IN LONDON FROM ON THE MARKET WEBSITE
+************************************************
+Date: May-20-2023
+@Author: Ajeyomi Adedoyin -> adedoyinsamuel25@gmail.com
+
+"""
+
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities

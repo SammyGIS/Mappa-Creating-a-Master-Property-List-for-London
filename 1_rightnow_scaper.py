@@ -1,3 +1,12 @@
+"""
+************************************************
+SCRAPE PROPERTY LISTED FOR SALES AND RENT IN LONDON FROM RIGHTNOW WEBSITE
+************************************************
+Date: May-20-2023
+@Author: Ajeyomi Adedoyin -> adedoyinsamuel25@gmail.com
+
+"""
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
