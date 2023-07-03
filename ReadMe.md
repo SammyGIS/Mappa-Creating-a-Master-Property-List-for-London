@@ -42,10 +42,6 @@ Greater London: List of postcode districts
 * Chrome WebDriver (chromedriver.exe) placed in the specified location
 * pgadmin / postgres db
 
-## Install Library
-```
-pip install requirement.txt 
-```
 
 ## Usage
 1. Clone the repository or download the project.
@@ -56,7 +52,7 @@ git clone https://github.com/SammyGIS/Flood-Modeeling-using-ML.git
 
 2. Install the required libraries by running the following command:
 ```
-pip install  package
+pip install requirement.txt 
 ```
 
 3. Make sure you have the Chrome WebDriver (chromedriver.exe) placed in the specified location.
