@@ -1,0 +1,6 @@
+webdriver
+selenium
+undetected_chromedriver
+pandas
+requests
+psycopg2

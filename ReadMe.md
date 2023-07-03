@@ -33,7 +33,7 @@ The goal of this  project is to create a master list of listed properties starti
 Greater London: List of postcode districts
 
 ## Prerequisites
-* [Seeting up Seleium](https://www.geeksforgeeks.org/how-to-install-selenium-in-python/)
+* [Seting up Seleium](https://www.geeksforgeeks.org/how-to-install-selenium-in-python/)
 * Python 3.x
 * Selenium library
 * undetected_chromedriver library
@@ -42,8 +42,13 @@ Greater London: List of postcode districts
 * Chrome WebDriver (chromedriver.exe) placed in the specified location
 * pgadmin / postgres db
 
+## Install Library
+```
+pip install requirement.txt 
+```
+
 ## Usage
-1. Clone the repository or download the script.
+1. Clone the repository or download the project.
 
 ```
 git clone https://github.com/SammyGIS/Flood-Modeeling-using-ML.git
