@@ -15,6 +15,7 @@ from datetime import datetime, date
 import time
 import re
 import os
+from utils import merge_save
 
 
 zrent_url = 'https://www.zoopla.co.uk/to-rent/property/london/?price_frequency=per_month&q=london&results_sort=newest_listings&search_source=to-rent&pn={}_next'
@@ -25,16 +26,7 @@ def get_driver():
     options = uc.ChromeOptions()
     
 
-    driver = uc.Chrome( options = options )
-    # options = webdriver.ChromeOptions()
-
-    # capabilities = DesiredCapabilities.CHROME.copy()
-    # capabilities['acceptInsecureCerts'] = True
-
-    # options.add_argument('--ignore-ssl-errors=yes')
-    # options.add_argument('--ignore-certificate-errors')
-    # driver = webdriver.Chrome(r'C:\Windows\chromedriver.exe', options=options, desired_capabilities=capabilities)
-    
+    driver = uc.Chrome( options = options )   
     return driver
 
 def get_pages(driver,page,url):
@@ -349,18 +341,13 @@ if __name__ == "__main__":
     rent_data = get_data(zrent_url,'rent','zoopla',start_page, end_page)
     sales_data = get_data(zsales_url,'sales','zoopla',start_page, end_page)
 
-    # merged the two data
-    appended_data = pd.concat([rent_data, sales_data])
-
-    #save it as csv
-    path = 'data_output'
-    if not os.path.exists(path):
-        os.mkdir(path)
-        appended_data.to_csv(f'{path}/zoopla_{date.today()}.csv', index=False)
+    #merge and save data as csv
+    merge_save(rent_data,sales_data)
 
     # save scrapped data to csv
-
     print('data scraped successfully')    
+
+
 
 
     

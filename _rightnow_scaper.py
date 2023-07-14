@@ -11,18 +11,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
 import datetime
+import os
+from utils import merge_save
+from utils import get_driver
 
 
 
 rm_salesurl = "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E87490&index={}&propertyTypes=&includeSSTC=false&mustHave=&dontShow=&furnishTypes=&keywords="
 rm_renturl = "https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&index={}&propertyTypes=&includeLetAgreed=false&mustHave=&dontShow=&furnishTypes=&keywords="
-
-
-def get_driver():
-    # path to chrome driver on my pc
-    driver = webdriver.Chrome(r'C:\Windows\chromedriver.exe')
-    return driver
-
 
 def get_pages(driver,page,url):
     """
@@ -44,7 +40,7 @@ def get_pages(driver,page,url):
     return page_html
 
 
-def parse_pages(page_html:'page_html', transaction_type:str, source:str):
+def extract_data(page_html:'page_html', transaction_type:str, source:str):
     """
     Parses the given HTML content of a web page and extracts relevant information based on the provided transaction type and source.
 
@@ -286,7 +282,7 @@ def get_data(url,transaction_type,source,start_index, stop_index,increment):
     for page in range(start_index, stop_index,increment):
         
         page_html = get_pages(browser,page,url)
-        pages_data = parse_pages(page_html,transaction_type, source)
+        pages_data = extract_data(page_html,transaction_type, source)
         all_pages_data.extend(pages_data)
 
     browser.quit()
@@ -294,24 +290,20 @@ def get_data(url,transaction_type,source,start_index, stop_index,increment):
     data = pd.DataFrame(all_pages_data)
     return data
 
+
 if __name__ == "__main__":
     # Specify the start and end page numbers for scraping
-    # the website page number increase by 24 instead of 1, i.e page 10 = 240 ......
     start_index = 0
     stop_index = 1100
-    increment = 24    
-
+    increment = 24  
+    
     # Call the get_data function to scrape the data
     rent_data = get_data(rm_renturl,'rent','rightmove',start_index, stop_index,increment)
     sales_data = get_data(rm_salesurl,'sales','rightmove',start_index, stop_index,increment)
 
-
-    # merged the two data
-    appended_data = pd.concat([rent_data, sales_data])
-
-    #save it as csv
-    appended_data.to_csv(f'data_output/rightnow_{datetime.date.today()}.csv', index=False)
+    #merge and save data as csv
+    merge_save(rent_data,sales_data)
 
     # save scrapped data to csv
-
     print('data scraped successfully')    
+

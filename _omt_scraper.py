@@ -17,27 +17,13 @@ from datetime import datetime, date , timedelta
 import time
 import re
 import os
+from utils import merge_save
+from utils import get_driver
 
 
 om_renturl  = 'https://www.onthemarket.com/to-rent/property/london/?page={}&view=grid'
 om_salesurl  = 'https://www.onthemarket.com/for-sale/property/london/?page={}&view=grid'
 
-
-def get_driver():
-
-    try:
-        options = webdriver.ChromeOptions()
-        capabilities = DesiredCapabilities.CHROME.copy()
-        capabilities['acceptInsecureCerts'] = True
-
-        options.add_argument('--ignore-ssl-errors=yes')
-        options.add_argument('--ignore-certificate-errors')
-        driver = webdriver.Chrome(r'C:\Windows\chromedriver.exe', options=options, desired_capabilities=capabilities)
-        
-        return driver
-    
-    except Exception as e:
-        print(e)
 
 def get_pages(driver,page,url):
     """
@@ -324,28 +310,6 @@ def get_data(url,transaction_type,source,start_page, end_page):
 
     data = pd.DataFrame(all_data)
     return data
-
-def merge_save(rents_data,sales_data):
-    """
-    Takes two DataFrame, merged the data and then save the daa to a folder as csv file
-
-    Args:
-        - rent_data (DataFrame): The dataframe of the rent daset
-        - sales_data (DataFrame): The type of transaction for which information needs to be extracted.
-
-    Returns:
-        dataframe containing the data sccrapped from the website   
-    """
-    # merged the two data
-    appended_data = pd.concat([rents_data, sales_data])
-
-    #save it as csv
-    path = 'data_output'
-    if not os.path.exists(path):
-        os.mkdir(path)
-    
-    # save the combined data to csv within the path
-    appended_data.to_csv(f'{path}/omt_{date.today()}.csv', index=False)
 
 
 if __name__ == "__main__":

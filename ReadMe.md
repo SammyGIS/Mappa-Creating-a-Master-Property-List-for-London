@@ -53,7 +53,7 @@ git clone https://github.com/SammyGIS/Flood-Modeeling-using-ML.git
 
 2. Install the required libraries by running the following command:
 ```
-pip install requirement.txt 
+pip install -r requirement.txt 
 ```
 
 3. Make sure you have the Chrome WebDriver (chromedriver.exe) placed in the specified location or just .

@@ -15,14 +15,13 @@ def page_html(driver):
     page = 1
     return get_pages(driver, page, url)
 
-def test_get_driver():
-    driver = get_driver()
-    assert isinstance(driver, webdriver.Chrome)
+# def test_get_driver(driver):
+#     assert isinstance(driver, webdriver.Chrome)
 
-def test_get_pages(driver):
-    url = 'https://www.onthemarket.com/to-rent/property/london/?page={}&view=grid'
-    page = 1
-    page_html = get_pages(driver, page, url)
+def test_get_pages(page_html):
+    # url = 'https://www.onthemarket.com/to-rent/property/london/?page={}&view=grid'
+    # page = 1
+    # page_html = get_pages(driver, page, url)
     assert isinstance(page_html, list)
     assert len(page_html) > 0
 

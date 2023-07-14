@@ -1,5 +1,5 @@
 import pytest
-from ._omt_scraper import get_driver, get_pages, extract_data, get_data
+from _omt_scraper import get_driver, get_pages, extract_data, get_data
 import pandas as pd
 from selenium import webdriver
 
@@ -16,7 +16,7 @@ def page_html(driver):
     return get_pages(driver, page, url)
 
 def test_get_driver():
-    driver = get_driver()
+    driver = driver()
     assert isinstance(driver, webdriver.Chrome)
 
 def test_get_pages(driver):

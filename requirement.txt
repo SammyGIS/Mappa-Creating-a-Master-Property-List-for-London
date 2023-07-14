@@ -3,4 +3,3 @@ undetected_chromedriver
 pandas
 requests
 psycopg2
-chromedriver_autoinstaller
