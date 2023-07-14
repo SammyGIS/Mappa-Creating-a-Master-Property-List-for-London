@@ -41,6 +41,7 @@ Greater London: List of postcode districts
 * pandas library
 * Chrome WebDriver (chromedriver.exe) placed in the specified location
 * pgadmin / postgres db
+* chromedriver_autoinstaller
 
 
 ## Usage
@@ -55,7 +56,7 @@ git clone https://github.com/SammyGIS/Flood-Modeeling-using-ML.git
 pip install requirement.txt 
 ```
 
-3. Make sure you have the Chrome WebDriver (chromedriver.exe) placed in the specified location.
+3. Make sure you have the Chrome WebDriver (chromedriver.exe) placed in the specified location or just .
 
 4. Update the start and end page numbers in the `if __name__ == "__main__":` section according to your requirements.
 
