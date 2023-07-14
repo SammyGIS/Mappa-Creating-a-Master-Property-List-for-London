@@ -47,7 +47,7 @@ def get_pages(driver,page,url):
     page_html = driver.find_elements(By.CLASS_NAME, OM_DIV_TAG)
     return page_html
 
-def parse_pages(page_html:'page_html', transaction_type:str, source:str):
+def extract_data(page_html:'page_html', transaction_type:str, source:str):
     """
     Parses the given HTML content of a web page and extracts relevant information based on the provided transaction type and source.
 
@@ -323,7 +323,7 @@ def get_data(url,transaction_type,source,start_page, end_page):
     
     for page in range(start_page, end_page+1):
         page_html = get_pages(browser,page,url)
-        pages_data = parse_pages(page_html,transaction_type, source)
+        pages_data = extract_data(page_html,transaction_type, source)
         all_pages_data.extend(pages_data)
 
     browser.quit()

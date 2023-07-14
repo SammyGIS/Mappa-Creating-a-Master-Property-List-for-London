@@ -11,6 +11,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
 import datetime
+from datetime import timedelta
 import os
 from utils import merge_save
 from utils import get_driver
@@ -173,9 +174,7 @@ def extract_data(page_html:'page_html', transaction_type:str, source:str):
                 sales_price = int(price_tag.text.split(" ")[0].strip().split("£")[1].split(" ")[0].replace(',', ''))
                 
             except:
-                sales_price = None
-
-                
+                sales_price = None     
 
         # Location
         try:
@@ -282,7 +281,7 @@ def get_data(url,transaction_type,source,start_index, stop_index,increment):
     for page in range(start_index, stop_index,increment):
         
         page_html = get_pages(browser,page,url)
-        pages_data = extract_data(page_html,transaction_type, source)
+        pages_data = extract_data(page_html,transaction_type,source)
         all_pages_data.extend(pages_data)
 
     browser.quit()

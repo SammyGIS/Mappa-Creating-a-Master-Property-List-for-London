@@ -11,3 +11,4 @@ def driver():
 def test_get_driver(driver):
     # test driver locatoion
     assert isinstance(driver, webdriver.Chrome)
+
