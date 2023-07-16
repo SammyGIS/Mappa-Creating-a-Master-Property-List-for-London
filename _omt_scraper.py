@@ -19,6 +19,7 @@ import re
 import os
 from utils import merge_save
 from utils import get_driver
+import logging
 
 
 om_renturl  = 'https://www.onthemarket.com/to-rent/property/london/?page={}&view=grid'
