@@ -1,2 +1,2 @@
 *.pytest_cahe
-*_pychache_
+*__pycache__
