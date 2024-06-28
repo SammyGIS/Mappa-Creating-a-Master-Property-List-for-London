@@ -7,17 +7,13 @@ Date: May-20-2023
 
 """
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import pandas as pd
 import datetime
 from datetime import timedelta
-import os
-from utils import merge_save
-from utils import get_driver
 
+import pandas as pd
+from selenium.webdriver.common.by import By
 
-
+from utils.utils import get_driver, merge_save
 rm_salesurl = "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E87490&index={}&propertyTypes=&includeSSTC=false&mustHave=&dontShow=&furnishTypes=&keywords="
 rm_renturl = "https://www.rightmove.co.uk/property-to-rent/find.html?locationIdentifier=REGION%5E87490&index={}&propertyTypes=&includeLetAgreed=false&mustHave=&dontShow=&furnishTypes=&keywords="
 
@@ -38,7 +34,9 @@ def get_pages(driver,page,url):
     driver.get(url.format(page))
     OM_DIV_TAG = 'propertyCard-wrapper'
     page_html = driver.find_elements(By.CLASS_NAME, OM_DIV_TAG)
+    print(page_html)
     return page_html
+    
 
 
 def extract_data(page_html:'page_html', transaction_type:str, source:str):

@@ -1,8 +1,11 @@
-import pytest
-from _omt_scraper import get_pages, extract_data, get_data
-from utils import get_driver
 import pandas as pd
-from selenium import webdriver
+import pytest
+from _omt_scraper import extract_data, get_data, get_pages
+
+from utils.utils import get_driver
+
+from utils.utils import get_driver
+
 
 @pytest.fixture(scope="module")
 def driver():

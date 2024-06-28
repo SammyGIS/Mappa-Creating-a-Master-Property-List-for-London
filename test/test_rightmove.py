@@ -1,7 +1,9 @@
-import pytest
 import pandas as pd
-from utils import get_driver
-from _rightnow_scaper import  get_pages, extract_data, get_data
+import pytest
+from _rightnow_scaper import extract_data, get_data, get_pages
+
+from utils.utils import get_driver
+from utils.utils import get_driver
 
 WEB_URL = "https://www.rightmove.co.uk/property-for-sale/find.html?locationIdentifier=REGION%5E87490&index={}\
         &propertyTypes=&includeSSTC=false&mustHave=&dontShow=&furnishTypes=&keywords="

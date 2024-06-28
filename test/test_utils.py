@@ -1,7 +1,10 @@
 import pytest
-from utils  import get_driver, merge_save
-import pandas as pd
 from selenium import webdriver
+
+from utils.utils import get_driver
+
+from utils.utils import get_driver
+
 
 @pytest.fixture(scope="module")
 def driver():
