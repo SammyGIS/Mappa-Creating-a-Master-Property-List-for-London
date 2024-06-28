@@ -33,7 +33,7 @@ The goal of this  project is to create a master list of listed properties starti
 Greater London: List of postcode districts
 
 ## Architecture
-["Work Flow"](DataArchitecture_Mappa.jpg)
+![Work Flow](data_architecture.jpg)
 
 ## Prerequisites
 * [Seting up Seleium](https://www.geeksforgeeks.org/how-to-install-selenium-in-python/)
